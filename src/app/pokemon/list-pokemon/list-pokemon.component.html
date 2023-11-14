@@ -1,0 +1,39 @@
+<!-- Classes de style propres à Materialize -->
+<div class="container">
+    <div class="row">
+
+        <!-- Import de la barre de recherche -->
+        <app-search-pokemon></app-search-pokemon>
+
+        <!-- Boucle for permettant d'afficher chaque pokemon de la liste pokemon recupérée depuis l'api -->
+        <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
+            <!-- Lors du clic, excécution de la méthode goToPokemon prennant en paramètre le pokemon selectionné -->
+            <div class="card horizontal" (click)="goToPokemon(pokemon)" pkmnBorderCard>
+                <div class="card-image">
+                    <img [src]="pokemon.picture" alt="{{pokemon.name}}" class="cardPicture">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{ pokemon.name }}</p>
+                        <!-- Pipe date propre à angular -->
+                        <p><small>{{ pokemon.created | date:"dd/MM/yyyy" }}</small></p>
+                        <!-- Pipe pokemonTypeColor -->
+                        <!-- Boucle for pour afficher chaque type de la liste pokemon.types -->
+                        <span *ngFor="let type of pokemon.types" class="{{type | pokemonTypeColor}}">
+                            {{type}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lien vers la page de création d'un nouveau pokemon -->
+<a
+    class="btn-floating btn-large waves-effect waves-light red z-depth-3"
+    style="position: fixed; bottom: 25px; right: 25px;" 
+    routerLink="/pokemon/add"
+>
++
+</a>

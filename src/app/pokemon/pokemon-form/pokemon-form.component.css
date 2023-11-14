@@ -1,0 +1,9 @@
+/* Classe propre à angular, qui cible tous les éléments du formulaire ayant l'attribut required */
+.ng-valid [required] {
+    border-left: 5px solid #42A948
+}
+
+/* Classe propre à angular, qui cible tous les éléments du formulaire, sauf le formulaire global en tant que tel */
+.ng-invalid:not(form) {
+    border-left: 5px solid #A94442;
+}

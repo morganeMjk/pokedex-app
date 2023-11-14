@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pokedex-app": {
+    "ng-pokemon-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -38,11 +38,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pokedex-app",
+            "outputPath": "dist/ng-pokemon-app",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -73,9 +73,12 @@
               "outputHashing": "all"
             },
             "development": {
+              "buildOptimizer": false,
               "optimization": false,
+              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -84,10 +87,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "pokedex-app:build:production"
+              "browserTarget": "ng-pokemon-app:build:production"
             },
             "development": {
-              "buildTarget": "pokedex-app:build:development"
+              "browserTarget": "ng-pokemon-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -95,7 +98,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "pokedex-app:build"
+            "browserTarget": "ng-pokemon-app:build"
           }
         }
       }
